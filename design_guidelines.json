@@ -1,0 +1,125 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "Nexus Cloud",
+      "aesthetic": "Cyber-Void Data Visualization",
+      "description": "A high-performance 3D word cloud generator with a futuristic, cinematic interface.",
+      "emotion": "Wonder, Precision, Intelligence"
+    },
+    "typography": {
+      "font_family": {
+        "heading": "Orbitron, sans-serif",
+        "body": "Rajdhani, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "weights": {
+        "light": 300,
+        "regular": 400,
+        "medium": 500,
+        "bold": 700
+      },
+      "scale": {
+        "display": "text-6xl md:text-8xl tracking-tighter font-bold",
+        "h1": "text-4xl md:text-5xl tracking-tight font-bold",
+        "h2": "text-2xl md:text-3xl tracking-normal font-semibold",
+        "body": "text-base md:text-lg leading-relaxed",
+        "caption": "text-xs md:text-sm tracking-widest uppercase opacity-70"
+      },
+      "imports": [
+        "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      ]
+    },
+    "colors": {
+      "mode": "dark",
+      "palette": {
+        "background": {
+          "default": "#050505",
+          "surface": "#0a0a0a",
+          "overlay": "rgba(5, 5, 5, 0.8)"
+        },
+        "primary": {
+          "main": "#00f3ff",
+          "glow": "0 0 20px rgba(0, 243, 255, 0.5)",
+          "text": "#00f3ff"
+        },
+        "secondary": {
+          "main": "#7000ff",
+          "glow": "0 0 20px rgba(112, 0, 255, 0.5)",
+          "text": "#bd00ff"
+        },
+        "text": {
+          "primary": "#ffffff",
+          "secondary": "#a1a1aa",
+          "muted": "#52525b"
+        },
+        "border": {
+          "subtle": "rgba(255, 255, 255, 0.1)",
+          "active": "rgba(0, 243, 255, 0.3)"
+        },
+        "status": {
+          "success": "#00ff9d",
+          "error": "#ff0055",
+          "warning": "#ffcc00"
+        }
+      }
+    },
+    "layout": {
+      "grid_system": "Use a Z-layered approach. Layer 0 is the 3D Canvas. Layer 10 is the UI Overlay.",
+      "spacing": {
+        "container_padding": "p-6 md:p-12",
+        "section_gap": "gap-8",
+        "element_gap": "gap-4"
+      },
+      "radius": {
+        "default": "rounded-none",
+        "button": "rounded-sm",
+        "card": "rounded-lg"
+      }
+    },
+    "visual_enhancers": {
+      "glassmorphism": "backdrop-blur-xl bg-black/40 border border-white/10",
+      "neon_glow": "shadow-[0_0_15px_rgba(0,243,255,0.3)]",
+      "glitch_effect": "animate-pulse",
+      "scanlines": "bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))]"
+    },
+    "components": {
+      "Input": {
+        "style": "bg-black/50 border-b-2 border-white/20 focus:border-cyan-400 text-white placeholder-white/30 font-mono h-12 w-full transition-all duration-300 outline-none",
+        "wrapper": "relative group"
+      },
+      "Button": {
+        "primary": "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 hover:border-cyan-400 px-6 py-2 uppercase tracking-widest font-bold text-sm transition-all duration-300 shadow-[0_0_10px_rgba(0,243,255,0.1)] hover:shadow-[0_0_20px_rgba(0,243,255,0.4)]",
+        "secondary": "bg-white/5 hover:bg-white/10 text-white border border-white/10 px-4 py-2 text-sm transition-all"
+      },
+      "Card": {
+        "style": "backdrop-blur-md bg-black/60 border border-white/10 p-6"
+      }
+    },
+    "3d_scene": {
+      "background": "#050505",
+      "fog": "Use explicit fog to fade distant words: <fog attach='fog' args={['#050505', 0, 80]} />",
+      "lighting": "Ambient light (0.5) + Point Lights (Cyan/Purple) to create depth.",
+      "word_behavior": "Words should face the camera (Billboard). Hovering a word should scale it up (1.5x) and change color to Neon Cyan.",
+      "camera": "PerspectiveCamera, position [0, 0, 30], fov 75"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALLATION: Run `yarn add three @types/three @react-three/fiber @react-three/drei framer-motion lucide-react clsx tailwind-merge`.",
+    "2. FONT SETUP: Import the Google Fonts in `index.css` or `index.html` immediately.",
+    "3. STRUCTURE: Create a folder `frontend/src/components/canvas` for 3D components and `frontend/src/components/ui` for HUD elements.",
+    "4. LAYOUT: The `<Canvas>` must be `fixed inset-0 -z-10` to cover the full screen. The UI elements (Input, Title, Error) must be absolute positioned on top.",
+    "5. ERROR HANDLING: If the API fails, show a 'SYSTEM FAILURE' glitch effect overlay, not a boring toast.",
+    "6. LOADING: Use a 'Decrypting...' text animation or a 3D spinner while fetching data.",
+    "7. WORD CLOUD LOGIC: The backend returns {text, value}. In frontend, map these to 3D positions. Use a spherical distribution or a random cloud within a bounds box.",
+    "8. DO NOT use standard shadcn/ui styles. Override them with the Cyber-Void styles defined in `visual_enhancers`.",
+    "9. SAMPLE DATA: When the app loads, if no URL is entered, render a 'demo' cloud with words like [React, ThreeJS, Fiber, Creative, Code, Future, Data, Visual].",
+    "10. RESPONSIVE: On mobile, reduce the number of words and increase the camera distance."
+  ],
+  "universal_guidelines": [
+    "Use 'Orbitron' for all headings to give that sci-fi look.",
+    "Never use pure white backgrounds. Always dark.",
+    "All interactive elements must have a hover state that involves a glow or color shift.",
+    "Use 'framer-motion' for UI entrances (fade in + slide up).",
+    "Ensure the 3D scene is performant. Use `instancedMesh` if rendering > 1000 words (unlikely here, but good practice). For < 100 words, individual <Text> components are fine."
+  ]
+}
