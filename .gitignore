@@ -1,0 +1,57 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/pip-log.txt
+backend/pip-delete-this-directory.txt
+backend/*.log
+
+# Node
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
+frontend/build/
+frontend/dist/
+frontend/.DS_Store
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Testing
+test_reports/
+backend_test.py
+.pytest_cache/
+coverage/
+*.cover
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# MongoDB
+data/
+
+# Misc
+.emergent/
+automation_output/
+screenshot*.png
